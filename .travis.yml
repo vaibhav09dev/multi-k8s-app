@@ -4,7 +4,7 @@ services:
 env:
   global:
     - SHA=$(git rev-parse HEAD)
-    - CLOUDSK_CORE_DISABLE_PROMPTS=1
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
     - secure: K56j5+qUNRvHt3natUnT321CfYdxtwpbcgMRlwp6ZuBcSW4zn5+KLGeC+HYaL6812FDgZ4r/w41zOdcbJsOFejQ2chv0ArPtEzOt2NcgAvjkCpsdprBtmrJ5E7QKhxQx+tnHsRRrZEmJo7+aRVQsrowloYn1CYJmLnvKiXJ2PEWcSsqmaRUezsL8syRpyGFZagYC4myIY1xdZK5sAUWUxF08sp0jv6C2jW1iQ7FByjdgDZ46mICO5Pn1TtvGybq2Y1AFCl5hxxXQpw3bIHLhGh+1qotOBx0N0HrwOStRFr6CJCz9eQDhEv3sO3zcVwSR8SsRqYbg5FeAme+FxUNWZjh4B+ALIlhYjz15XJlcwys+5bicz1wMyC9wqkDF8WfG58PxWIFdBqKq3RxqLU9IdIF1gwd7gQoi4YmxGG3+brLyV/KAOR4B3188YBJm4ZPwuEW7/nPhf69g+25J0OYxoi+WrOFtv1LecQWGy32m5KBsik4tR+jyfdjvAAXmfB0JpF1Mz2i5JE1UzwmAEBR1r5wAHObH2+B9DioShYiNgh/EE3STnP4MFHTBb78utZsM0OXcN/BGJZYkjQNOWPmoJsKYCqq7Ffnum4OQGLEym7eR34CCmRmQV8J9vjt7MAX+dQrvsTpHV63pMOpginJZIXORKeI6CYE3+9uVJc5SFoA=
 before_install:
   - openssl aes-256-cbc -k "$secret_password" -in service-account.json.enc -out service-account.json -d
