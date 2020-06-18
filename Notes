@@ -12,3 +12,61 @@ Steps for Deployment
 3. Create Google Cloud Project 
 4. Enable Billing for Project 
 5. Add Deployment scripts to the Repo
+
+
+After creating account in Google Cloud
+1. Create a project for your application
+2. Set up billing for this project 
+3. Create Compute Engine - Select Kubernetes
+     Form Fields
+        Cluster Name - Can be anything (ex multi-cluster-app)
+        location type - zonal
+        select zone - close to your geo location
+        master version - default
+        node pools - number of nodes - 3
+        Machine Type - specifications - 1 vCPU (3.75 GB Memory )
+
+
+
+Travis CI Set Up Steps 
+1. Install Google Cloud SDK CLI
+2. Configure the SDK without Google auth info
+3. Login to Docker CLI
+4. Build the test version of multi-client
+5. Run tests
+6. If tests are successful , then run a script to deploy newest images
+7. Build all our images , tag each one , push each to docker hub 
+8. Apply all configs in the K8s folder
+9. imperatively set latest images on each Deployment
+
+For installing travis CLI , we need ruby locally . As we are not installing ruby locally ,
+ we will start docker and install ruby there and from that ruby terminal we will install travis cli 
+ We need to push service account json
+
+ Commands to run 
+ 1. download ruby image
+        docker run -it -v ${pwd}:/app ruby:2.3 sh
+ 2. gem install travis --no-rdoc --no-ri
+ 3. gem install travis
+ 4. travis Login
+ 5. Copy service account json to volume created in step 1 
+ 6. travis encrypt-file service-account.json
+
+Docker Volumes was not working . Hence i installed travis cli , for travis cli you need to have ruby installed on your Machine
+1. install ruby
+2. gem install travis 
+3. travis login - here i was getting error of bad file descriptor and was unable to login . 
+   Following steps were executed to login in travis 
+   1. Go to your github account 
+   2. Go to Settings >> Developer Settings >> Generate Tokens 
+       Here select repo(all) , admin:repo_hook , user to generate the token 
+   3. travis login --github-token generate_token
+   Tada .. You are now logged in .
+
+4. Encrypt the service-account.json with following command 
+       travis encrypt-file service-account.json
+5. From the output of above command , copy the output openssl....-d and put this line in your travis.yaml inside before_install section
+6. DELETE the service account json 
+7. push your code to github 
+
+ travis encrypt-file service-account.json -r vaibhav09dev/multi-k8s-app
