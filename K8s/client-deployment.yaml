@@ -14,7 +14,7 @@ spec:
     spec:
       containers: 
         - name: client
-          image: vaibhav09dev/multi-client:v3
+          image: vaibhav09dev/multi-client
           ports:
             - containerPort: 3000
   
