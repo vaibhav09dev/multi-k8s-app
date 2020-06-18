@@ -73,3 +73,9 @@ Docker Volumes was not working . Hence i installed travis cli , for travis cli y
 
  kubectl create secret generic pgpassword --from-literal PGPASSWORD=mypgpassword123 
 
+
+travis encrypt secre_password=$hah$vbhav258 --add  
+
+openssl aes-256-cbc -k "$hah$vbhav258" -in service-account.json -out service-account.json.enc
+
+openssl aes-256-cbc -k "$secret_password" -in service-account.json.enc -out service-account.json -d
