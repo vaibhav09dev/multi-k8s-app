@@ -70,3 +70,5 @@ Docker Volumes was not working . Hence i installed travis cli , for travis cli y
 7. push your code to github 
 
  travis encrypt-file service-account.json -r vaibhav09dev/multi-k8s-app
+
+ kubectl create secret generic pgpassword --from-literal PGPASSWORD=mypgpassword123 
